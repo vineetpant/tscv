@@ -113,21 +113,20 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		super.onActivityResult(requestCode, resultCode, data);
 
 
-		if (resultCode == RESULT_OK
-				&& requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
+		if (resultCode == RESULT_OK && requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
 			String responseStr = data.getStringExtra("RESPONSE");
 			
 			if(isOtp){
-				  authCaptureData = new Gson().fromJson(
-						responseStr, KycCaptureData.class);
-				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(
-						this, authCaptureData);
+				  authCaptureData = new Gson().fromJson(responseStr, KycCaptureData.class);
+				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this, authCaptureData);
 				authAsyncTask.setResHandler(this);
 				authAsyncTask.execute(BASE_URL + "/kyc");
 			}else if(isFp){
 				showToast("authcapture fp ", Toast.LENGTH_SHORT);
-				 authCaptureData = new Gson().fromJson(
-						responseStr, KycCaptureData.class);
+				 authCaptureData = new Gson().fromJson(responseStr, KycCaptureData.class);
+				 AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this, authCaptureData);
+				 authAsyncTask.setResHandler(this);
+				 authAsyncTask.execute(BASE_URL + "/kyc");
 			}
 			return;
 		}
@@ -221,7 +220,7 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		i.putExtra("REQUEST", new Gson().toJson(kycRequest));
 
 		try {
-			this.startActivityForResult(i, 1000);
+			this.startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}

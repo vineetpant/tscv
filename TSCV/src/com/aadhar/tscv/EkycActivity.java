@@ -95,7 +95,7 @@ public class EkycActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btnNext:
 			// TODO add to database and move to start page
-			KYC_RESPONSE = null;
+			//KYC_RESPONSE = null;
 			if(IS_OWNER_SIGNUP){
 				String address=KYC_RESPONSE.getKyc().getPoa().getCo()+KYC_RESPONSE.getKyc().getPoa().getHouse()+
 						KYC_RESPONSE.getKyc().getPoa().getStreet()+KYC_RESPONSE.getKyc().getPoa().getDist();

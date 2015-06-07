@@ -69,8 +69,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		switch (id) {
 		case R.id.btnProceed:
 			// if (isFp) {
-			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(
-					this, authCaptureData);
+			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this, authCaptureData);
 			authAsyncTask.setResHandler(this);
 			authAsyncTask.execute(BASE_URL + "/auth");
 			break;
@@ -93,16 +92,10 @@ public class LoginActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-
-	
-
-		if (resultCode == RESULT_OK
-				&& requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
+		if (resultCode == RESULT_OK && requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
 			String responseStr = data.getStringExtra("RESPONSE");
-			final AuthCaptureData authCaptureData = new Gson().fromJson(
-					responseStr, AuthCaptureData.class);
-			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,
-					authCaptureData);
+			final AuthCaptureData authCaptureData = new Gson().fromJson(responseStr, AuthCaptureData.class);
+			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,authCaptureData);
 			authAsyncTask.execute(BASE_URL + "/auth");
 			return;
 		}
@@ -121,7 +114,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		i = new Intent("com.aadhaarconnect.bridge.action.AUTHCAPTURE");
 
 		AuthCaptureRequest biometricAuth = new AuthCaptureRequest();
-		biometricAuth.setAadhaar(uidNumber);
+		biometricAuth.setAadhaar(txtEnterAadhaarNum.getText().toString());
 		biometricAuth.setModality(Modality.biometric);
 		biometricAuth.setModalityType(ModalityType.fp);
 		biometricAuth.setCertificateType(CertificateType.preprod);
@@ -137,7 +130,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		i.putExtra("REQUEST", new Gson().toJson(biometricAuth));
 
 		try {
-			this.startActivityForResult(i, 1001);
+			startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
