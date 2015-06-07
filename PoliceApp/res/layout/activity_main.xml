@@ -26,8 +26,8 @@
         android:layout_margin="50dp"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/dash_iv_lecture"
+        <Button
+            android:id="@+id/btnRequest"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,8 +50,8 @@
             android:layout_height="1dp"
             android:background="@drawable/rep_horizontal" />
 
-        <TextView
-            android:id="@+id/dash_iv_qa"
+        <Button
+            android:id="@+id/btnHistory"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

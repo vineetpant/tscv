@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparent">#00000000</color>
+  
     <color name="clr_red">#ed3237</color>
     <color name="clr_white">#ffffff</color>
     <color name="clr_light_dark">#757575</color>
+        <color name="primary">@color/bg_blue</color>
+    <color name="primary_dark">@color/dark_blue</color>
+    <color name="colorAccent">@color/white</color>
+    <color name="white">#ffffff</color>
+    <!--
+         Define a standard holo blue color. Useful as we can refer to it from various other
+         resource files or even code and it only needs to be updated in one place if we wanted
+         to change it.
+    -->
+    <color name="holo_blue">#FF33B5E5</color>
+    <color name="bg_blue">#0091ea</color>
+    <color name="dark_blue">#0478bf</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_on_white_button">#1a0a16</color>
+    <color name="grey">#484848</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
