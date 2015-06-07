@@ -60,10 +60,10 @@ public class AadhaarAuthAsyncTaskKyc extends AsyncTask<String, Void, KycResponse
 	KycCaptureData authData;
 	ServerResponse resHandler;
 	
-	public void setResHandler(ServerResponse resHandler){
-		
+	public void setResHandler(ServerResponse resHandler){		
 		this.resHandler=resHandler;
 	}
+	
 	public AadhaarAuthAsyncTaskKyc(Context ctx, KycCaptureData authCaptureData) {
 		this.authData = authCaptureData;
 		this.ctx = ctx;

@@ -69,8 +69,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		switch (id) {
 		case R.id.btnProceed:
 			// if (isFp) {
-			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(
-					this, authCaptureData);
+			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this, authCaptureData);
 			authAsyncTask.setResHandler(this);
 			authAsyncTask.execute(BASE_URL + "/auth");
 			break;
@@ -92,18 +91,14 @@ public class LoginActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);	
 
-	
-
-		if (resultCode == RESULT_OK
-				&& requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
+		if (resultCode == RESULT_OK && requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
 			String responseStr = data.getStringExtra("RESPONSE");
-			final AuthCaptureData authCaptureData = new Gson().fromJson(
-					responseStr, AuthCaptureData.class);
-//			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,
-//					authCaptureData);
-//			authAsyncTask.execute(BASE_URL + "/auth");
+			final AuthCaptureData authCaptureData = new Gson().fromJson(responseStr, AuthCaptureData.class);
+			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,authCaptureData);
+			authAsyncTask.setResHandler(this);
+			authAsyncTask.execute(BASE_URL + "/auth");
 			return;
 		}
 	}
@@ -137,7 +132,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		i.putExtra("REQUEST", new Gson().toJson(biometricAuth));
 
 		try {
-			this.startActivityForResult(i, 1001);
+			startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
@@ -146,15 +141,13 @@ public class LoginActivity extends Activity implements OnClickListener,
 	@Override
 	public void authResponseReceived(AuthResponse authRes) {
 		// TODO Auto-generated method stub
-//		String msg = "Authres received "+authRes;
-//
-//		DialogsNMsgs.createAlertDialog(msg, this);
-		
+		//		String msg = "Authres received "+authRes;
+		//		DialogsNMsgs.createAlertDialog(msg, this);
+				
 		
 		if (authRes.isSuccess()) {
 			
-			DatabaseClass db = DatabaseClass
-					.getInstance(getApplicationContext());
+			DatabaseClass db = DatabaseClass.getInstance(getApplicationContext());
 			Owner owner = db.getOwnerDetailByUID(uidNumber);
 			if (owner != null) {
 				Intent i=new Intent(this,OwnerAfterLoginActivity.class);

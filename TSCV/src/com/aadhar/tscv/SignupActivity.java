@@ -74,8 +74,7 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		switch (id) {
 		case R.id.btnProceed:
 			if (isFp) {
-				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this,
-						authCaptureData);
+				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this,authCaptureData);
 				authAsyncTask.setResHandler(this);
 				authAsyncTask.execute(BASE_URL + "/kyc");
 
@@ -83,9 +82,7 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 				createOtpRequestKyc();
 				
 			} else {
-
-				showToast("Please select either Finger or Otp",
-						Toast.LENGTH_SHORT);
+				showToast("Please select either Finger or Otp",Toast.LENGTH_SHORT);
 			}
 			break;
 
@@ -118,16 +115,16 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 			String responseStr = data.getStringExtra("RESPONSE");
 			
 			if(isOtp){
-				  authCaptureData = new Gson().fromJson(
-						responseStr, KycCaptureData.class);
-				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(
-						this, authCaptureData);
+				  authCaptureData = new Gson().fromJson(responseStr, KycCaptureData.class);
+				AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this, authCaptureData);
 				authAsyncTask.setResHandler(this);
-				authAsyncTask.execute(BASE_URL + "/kyc");
+				authAsyncTask.execute(BASE_URL + "/otp");
 			}else if(isFp){
 				showToast("authcapture fp ", Toast.LENGTH_SHORT);
-				 authCaptureData = new Gson().fromJson(
-						responseStr, KycCaptureData.class);
+				 authCaptureData = new Gson().fromJson(responseStr, KycCaptureData.class);
+				 AadhaarAuthAsyncTaskKyc authAsyncTask = new AadhaarAuthAsyncTaskKyc(this, authCaptureData);
+				 authAsyncTask.setResHandler(this);
+				 authAsyncTask.execute(BASE_URL + "/kyc");
 			}
 			return;
 		}
@@ -165,7 +162,7 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		i.putExtra("REQUEST", new Gson().toJson(kycRequest));
 
 		try {
-			this.startActivityForResult(i, 1002);
+			this.startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
@@ -190,7 +187,7 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		i.putExtra("REQUEST", new Gson().toJson(otpRequest));
 
 		try {
-			this.startActivityForResult(i, 1001);
+			this.startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
@@ -217,11 +214,11 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 
 		kycRequest.setAuthCaptureRequest(biometricAuth);
 		kycRequest.setConsent(ConsentType.Y);
-
+		
 		i.putExtra("REQUEST", new Gson().toJson(kycRequest));
 
 		try {
-			this.startActivityForResult(i, 1000);
+			startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}

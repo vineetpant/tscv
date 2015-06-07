@@ -145,14 +145,15 @@ public final class R {
         public static final int activity_servant_additional_details=0x7f030009;
         public static final int activity_servant_details=0x7f03000a;
         public static final int activity_servant_manage=0x7f03000b;
-        public static final int activity_tenant_details_form=0x7f03000c;
-        public static final int activity_tenant_grid=0x7f03000d;
-        public static final int activity_tenant_mangage=0x7f03000e;
-        public static final int activity_unregister_servant=0x7f03000f;
-        public static final int activity_unregister_tenant=0x7f030010;
-        public static final int grid_item_pending_notification=0x7f030011;
-        public static final int grid_item_previous_tenants=0x7f030012;
-        public static final int register_new_tenant=0x7f030013;
+        public static final int activity_signup=0x7f03000c;
+        public static final int activity_tenant_details_form=0x7f03000d;
+        public static final int activity_tenant_grid=0x7f03000e;
+        public static final int activity_tenant_mangage=0x7f03000f;
+        public static final int activity_unregister_servant=0x7f030010;
+        public static final int activity_unregister_tenant=0x7f030011;
+        public static final int grid_item_pending_notification=0x7f030012;
+        public static final int grid_item_previous_tenants=0x7f030013;
+        public static final int register_new_tenant=0x7f030014;
     }
     public static final class string {
         public static final int aadhaar_number_hint=0x7f050004;
