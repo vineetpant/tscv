@@ -5,6 +5,7 @@ import com.social.dial.DatabaseClass;
 import com.social.dial.modalhack.Owner;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
@@ -95,8 +96,8 @@ public class EkycActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btnNext:
 			// TODO add to database and move to start page
-			KYC_RESPONSE = null;
-			if(IS_OWNER_SIGNUP){
+			
+			if(KYC_RESPONSE!=null){
 				String address=KYC_RESPONSE.getKyc().getPoa().getCo()+KYC_RESPONSE.getKyc().getPoa().getHouse()+
 						KYC_RESPONSE.getKyc().getPoa().getStreet()+KYC_RESPONSE.getKyc().getPoa().getDist();
 				
@@ -106,7 +107,13 @@ public class EkycActivity extends Activity implements OnClickListener {
 				owner.setPhone_num(KYC_RESPONSE.getKyc().getPoi().getPhone());
 				owner.setPresent_add(address);
 				db.addOwner(owner);
+				
+				
 			}
+			Intent i=new Intent(this,OwnerAfterLoginActivity.class);
+			startActivity(i);
+			finish();
+			KYC_RESPONSE = null;
 			break;
 
 		}

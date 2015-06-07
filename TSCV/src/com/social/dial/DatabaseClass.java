@@ -41,57 +41,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         DatabaseClass.db = sqLiteDatabase;
-        sqLiteDatabase.execSQL(" CREATE TABLE owner (" +
-                "            uid            TEXT," +
-                "            present_add    TEXT," +
-                "            present_tenant TEXT," +
-                "            phone_num      TEXT" +
-                "    );");
-
-        sqLiteDatabase.execSQL("CREATE TABLE crime (" +
-                "    uid               TEXT," +
-                "    date              TEXT," +
-                "    case_status       TEXT," +
-                "    description       TEXT," +
-                "    jail_term         TEXT," +
-                "    police_station_id TEXT" +
-                ");");
-
-        sqLiteDatabase.execSQL("CREATE TABLE police_station (" +
-                "    station_id  TEXT," +
-                "    sho_uid     TEXT," +
-                "    address     TEXT," +
-                "    contact_num TEXT" +
-                ")");
-
-        sqLiteDatabase.execSQL("CREATE TABLE servant (" +
-                "    uid                         TEXT," +
-                "    experience                  TEXT," +
-                "    specialization              TEXT," +
-                "    height                      TEXT," +
-                "    complexion                  TEXT," +
-                "    eyes                        TEXT," +
-                "    home_town_police_station_id," +
-                "    local_relative_uid          TEXT" +
-                ");");
-
-        sqLiteDatabase.execSQL("CREATE TABLE servent_history (" +
-                "    servant_id                 TEXT," +
-                "    employer_uid               TEXT," +
-                "    start_date                 TEXT," +
-                "    end_date                   TEXT," +
-                "    verification_status_police" +
-                ");");
-
-        sqLiteDatabase.execSQL("CREATE TABLE tenant (" +
-                "    adhaar_id       TEXT," +
-                "    present_address TEXT," +
-                "    occupation      TEXT," +
-                "    phone_num       TEXT," +
-                "    name            TEXT," +
-                "    email           TEXT," +
-                "    photo           BLOB" +
-                ");");
+       
     }
 
     public void addTenant(Tenant tenant){
@@ -253,8 +203,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
     }
     
     public ArrayList<Tenant> getAllTenantByUid(String uid) {
-        Cursor cursor = db.rawQuery("SELECT * FROM tenant ",new String[]{uid});
-       
+        Cursor cursor = db.rawQuery("SELECT * FROM tenant ",new String[]{});
         cursor.moveToFirst();
         ArrayList<Tenant> list = new ArrayList<Tenant>();
         do {

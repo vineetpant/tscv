@@ -23,7 +23,7 @@ public class OwnerAfterLoginActivity extends Activity implements OnClickListener
 		btnManageTenants=(Button) findViewById(R.id.btnManageTenants);
 		
 		btnManageServants.setOnClickListener(this);
-		btnManageServants.setOnClickListener(this);
+		btnManageTenants.setOnClickListener(this);
 		
 		
 	}

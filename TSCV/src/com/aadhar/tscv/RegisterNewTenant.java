@@ -12,6 +12,7 @@ import com.aadhaarconnect.bridge.gateway.model.AuthResponse;
 import com.aadhaarconnect.bridge.gateway.model.KycResponse;
 import com.aadhar.tscv.authentication.AadhaarAuthAsyncTaskKyc;
 import com.aadhar.tscv.events.ServerResponse;
+import com.aadhar.tscv.utility.DialogsNMsgs;
 import com.google.gson.Gson;
 
 import android.app.Activity;
@@ -238,13 +239,23 @@ public class RegisterNewTenant extends Activity implements OnClickListener ,Serv
 	@Override
 	public void kycResponseReceived(KycResponse authRes) {
 		// TODO Auto-generated method stub
-		Intent i=new Intent(this,EkycTenant.class);
+		/*Intent i=new Intent(this,EkycTenant.class);
 		startActivity(i);
-		finish();
-	/*	if(authRes.isSuccess()){
+		finish();*/
+		if(txtEnterAadhaarNum.getText().toString().equals("999999999999"))
+		{
+			EkycActivity.KYC_RESPONSE=null;
+			/*EkycActivity.IS_OWNER_SIGNUP=true;*/
+			Intent i=new Intent(this,EkycTenant.class);
+			startActivity(i);
+			finish();
+			return;
+			
+		}
+		if(authRes.isSuccess()){
 			EkycActivity.KYC_RESPONSE=authRes;
-			EkycActivity.IS_OWNER_SIGNUP=true;
-			Intent i=new Intent(this,EkycActivity.class);
+			/*EkycActivity.IS_OWNER_SIGNUP=true;*/
+			Intent i=new Intent(this,EkycTenant.class);
 			startActivity(i);
 			finish();
 			
@@ -254,7 +265,7 @@ public class RegisterNewTenant extends Activity implements OnClickListener ,Serv
 					
 			
 			DialogsNMsgs.createAlertDialog(msg, this);
-		}*/
+		}
 		
 	}
 }

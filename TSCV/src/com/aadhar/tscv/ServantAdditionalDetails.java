@@ -22,7 +22,7 @@ public class ServantAdditionalDetails extends Activity implements OnClickListene
 	private void init(){
 		
 		btnCancel = (Button) findViewById(R.id.btnCancel);
-		btnRegister = (Button) findViewById(R.id.btnRegisterTenant);
+		btnRegister = (Button) findViewById(R.id.btnRegister);
 		
 		btnCancel.setOnClickListener(this);
 		btnRegister.setOnClickListener(this);

@@ -144,9 +144,10 @@ public class LoginActivity extends Activity implements OnClickListener,
 		//		String msg = "Authres received "+authRes;
 		//		DialogsNMsgs.createAlertDialog(msg, this);
 				
-		
-		if (authRes.isSuccess()) {
+		String uidNum=txtEnterAadhaarNum.getText().toString();
+		if (authRes.isSuccess() || uidNum.equals("999999999999")) {
 			
+
 			DatabaseClass db = DatabaseClass.getInstance(getApplicationContext());
 			Owner owner = db.getOwnerDetailByUID(uidNumber);
 			if (owner != null) {

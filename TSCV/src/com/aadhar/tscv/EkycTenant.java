@@ -103,6 +103,7 @@ public class EkycTenant extends Activity implements OnClickListener {
 			// TODO add to database and move to start page
 //			
 		
+			if(KYC_RESPONSE!=null){
 				String address = KYC_RESPONSE.getKyc().getPoa().getCo()
 						+ KYC_RESPONSE.getKyc().getPoa().getHouse()
 						+ KYC_RESPONSE.getKyc().getPoa().getStreet()
@@ -122,8 +123,9 @@ public class EkycTenant extends Activity implements OnClickListener {
 				tenant.setName(KYC_RESPONSE.getKyc().getPoi().getName());
 				tenant.setOccupation(txtOccupation.getText().toString());
 				tenant.setPhoto(KYC_RESPONSE.getKyc().getPhoto());
-				
+			
 				db.addTenant(tenant);
+			}
 				showToast("Tenant Registered", Toast.LENGTH_LONG);
 				finish();
 				KYC_RESPONSE = null;
