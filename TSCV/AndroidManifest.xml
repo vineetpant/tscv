@@ -13,13 +13,22 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.aadhar.tscv.LoginActivity"
+            android:name="com.aadhar.tscv.LoginChoice"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.LoginActivity" >
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.SignupActivity" >
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.EkycActivity" >
         </activity>
     </application>
 

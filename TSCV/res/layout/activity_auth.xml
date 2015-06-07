@@ -91,34 +91,27 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:orientation="vertical" >
-
-        <ImageView
-            android:id="@+id/imgFpCaptured"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/finger"
-            android:text="Enter your OTP here"
-            android:textColor="@color/grey" />
-
-        <TextView
-            android:id="@+id/lblCaptureStatus"
-            style="@style/edit_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:ems="10"
-            android:inputType="number" />
     </LinearLayout>
-
+   <LinearLayout
+        android:id="@+id/linLayFpAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+    
     <Button
-        android:id="@+id/btnAuthenticate"
+        android:id="@+id/btnCancle"
         style="@style/button_style"
         android:layout_width="207dp"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Cancel" />
 
+    <Button
+        android:id="@+id/btnProceed"
+        style="@style/button_style"
+        android:layout_width="207dp"
+        android:layout_height="wrap_content"
+        android:text="Authenticate" />
+</LinearLayout>
 </LinearLayout>
