@@ -1,9 +1,5 @@
 package com.aadhar.tscv;
 
-import com.aadhaarconnect.bridge.gateway.model.KycResponse;
-import com.social.dial.DatabaseClass;
-import com.social.dial.modalhack.Owner;
-
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -12,12 +8,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class EkycActivity extends Activity implements OnClickListener {
+import com.aadhaarconnect.bridge.gateway.model.KycResponse;
+import com.social.dial.DatabaseClass;
+import com.social.dial.modalhack.Owner;
+
+public class UnregisterTenant extends Activity implements OnClickListener {
 
 	TextView lblName, lblEmail, lblGender, lblPhone, lblDob, lblCo, lblHouse,
 			lblStreet, lblLm, lblLoc, lblPo, lblPc, lblVtc, lblDist, lblState;
-	Button btnCancel, btnNext;
+	Button btnCancel, btnUnregister;
 
 	ImageView imgPhoto;
 	
@@ -51,10 +52,10 @@ public class EkycActivity extends Activity implements OnClickListener {
 		lblState = (TextView) findViewById(R.id.lblState);
 
 		btnCancel = (Button) findViewById(R.id.btnCancel);
-		btnNext = (Button) findViewById(R.id.btnNext);
+		btnUnregister = (Button) findViewById(R.id.btnUnregisterTenant);
 
 		btnCancel.setOnClickListener(this);
-		btnNext.setOnClickListener(this);
+		btnUnregister.setOnClickListener(this);
 
 		imgPhoto = (ImageView) findViewById(R.id.imgPhoto);
 		if (KYC_RESPONSE != null) {
@@ -93,24 +94,20 @@ public class EkycActivity extends Activity implements OnClickListener {
 		case R.id.btnCancel:
 			finish();
 			break;
-		case R.id.btnNext:
+		case R.id.btnUnregisterTenant:
 			// TODO add to database and move to start page
-			KYC_RESPONSE = null;
-			if(IS_OWNER_SIGNUP){
-				String address=KYC_RESPONSE.getKyc().getPoa().getCo()+KYC_RESPONSE.getKyc().getPoa().getHouse()+
-						KYC_RESPONSE.getKyc().getPoa().getStreet()+KYC_RESPONSE.getKyc().getPoa().getDist();
-				
-				DatabaseClass db= DatabaseClass.getInstance(getApplicationContext());
-				Owner owner=new Owner();
-				owner.setUid(KYC_RESPONSE.getAadhaarId());
-				owner.setPhone_num(KYC_RESPONSE.getKyc().getPoi().getPhone());
-				owner.setPresent_add(address);
-				db.addOwner(owner);
-			}
+			showToast("Tenant Unregistered",Toast.LENGTH_LONG);
+			finish();
+			
 			break;
 
 		}
 
+	}
+	
+	private void showToast(String text, int duration) {
+		Toast toast = Toast.makeText(this, text, duration);
+		toast.show();
 	}
 
 }

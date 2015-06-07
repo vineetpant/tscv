@@ -90,11 +90,11 @@ public class AadhaarAuthAsyncTaskAuth extends AsyncTask<String, Void, AuthRespon
 		AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
 		alertDialog.setTitle("Status");
 		
-		String msg = "Auth Status: " + (response.isSuccess() ? "success" : "fail")
-		        + (null != response.getReferenceCode() ? "\nRefcode: " + response.getReferenceCode() : " ");
-		
-		//resHandler.authResponseReceived(response);
-		
+		resHandler.authResponseReceived(response);
+
+		/*String msg = "Auth Status: " + (response.isSuccess() ? "success" : "fail")
+		        + (null != response.getReferenceCode() ? "\nRefcode: " + response.getReferenceCode() : " ")
+		;
 		alertDialog.setMessage(msg);
 		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +102,7 @@ public class AadhaarAuthAsyncTaskAuth extends AsyncTask<String, Void, AuthRespon
 			}
 		});
 
-		alertDialog.show();
+		alertDialog.show();*/
 	}
 
 	@Override

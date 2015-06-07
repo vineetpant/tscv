@@ -22,10 +22,9 @@ import com.aadhaarconnect.bridge.gateway.model.AuthResponse;
 import com.aadhaarconnect.bridge.gateway.model.KycResponse;
 import com.aadhar.tscv.authentication.AadhaarAuthAsyncTaskKyc;
 import com.aadhar.tscv.events.ServerResponse;
-import com.aadhar.tscv.utility.DialogsNMsgs;
 import com.google.gson.Gson;
 
-public class SignupActivity extends Activity implements OnClickListener ,ServerResponse{
+public class RegisterNewServant extends Activity implements OnClickListener ,ServerResponse{
 
 	public static final int AADHAAR_CONNECT_AUTH_REQUEST = 1000;
 	private static final String BASE_URL = "https://ac.khoslalabs.com/hackgate/hackathon";
@@ -237,10 +236,10 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 	@Override
 	public void kycResponseReceived(KycResponse authRes) {
 		// TODO Auto-generated method stub
-//		Intent i=new Intent(this,OwnerAfterLoginActivity.class);
-//		startActivity(i);
-//		finish();
-		if(authRes.isSuccess()){
+		Intent i=new Intent(this,EkycServant.class);
+		startActivity(i);
+		finish();
+	/*	if(authRes.isSuccess()){
 			EkycActivity.KYC_RESPONSE=authRes;
 			EkycActivity.IS_OWNER_SIGNUP=true;
 			Intent i=new Intent(this,EkycActivity.class);
@@ -253,11 +252,9 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 					
 			
 			DialogsNMsgs.createAlertDialog(msg, this);
-		}
+		}*/
 		
 	}
-	
-	
-	
-
 }
+
+

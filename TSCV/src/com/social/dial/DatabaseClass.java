@@ -121,6 +121,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
         return contentValues;
     }
 
+  
     public void addOwner(Owner owner) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("uid",owner.getUid());
@@ -249,5 +250,26 @@ public class DatabaseClass extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+    
+    public ArrayList<Tenant> getAllTenantByUid(String uid) {
+        Cursor cursor = db.rawQuery("SELECT * FROM tenant ",new String[]{uid});
+       
+        cursor.moveToFirst();
+        ArrayList<Tenant> list = new ArrayList<Tenant>();
+        do {
+        Tenant contentValues = new Tenant();
+        contentValues.setAdhaar_id(cursor.getString(0));
+        contentValues.setPresent_address(cursor.getString(1));
+        contentValues.setOccupation(cursor.getString(2));
+        contentValues.setPhone_num(cursor.getString(3));
+        contentValues.setName(cursor.getString(4));
+        contentValues.setEmail(cursor.getString(5));
+        contentValues.setPhoto(cursor.getBlob(6));
+        list.add(contentValues);
+        } while (cursor.moveToNext());
+        cursor.close();
+        return list;
+    
     }
 }

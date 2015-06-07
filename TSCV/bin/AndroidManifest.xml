@@ -7,8 +7,6 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -30,7 +28,41 @@
         <activity android:name="com.aadhar.tscv.SignupActivity" >
         </activity>
         
-        <activity android:name="com.aadhar.tscv.EkycActivity" >
+        <activity android:name="com.aadhar.tscv.EkycActivity" 
+            android:screenOrientation="landscape">
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.EkycServant" 
+            android:screenOrientation="landscape">
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.EkycTenant" 
+            android:screenOrientation="landscape">
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.ManageServants" >
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.ManageTenants" >
+        </activity>
+        
+           
+        <activity android:name="com.aadhar.tscv.OwnerAfterLoginActivity" >
+        </activity>
+        
+          <activity android:name="com.aadhar.tscv.RegisterNewTenant" >
+        </activity>
+           
+        <activity android:name="com.aadhar.tscv.RegisterNewServant" >
+        </activity>
+          
+        <activity android:name="com.aadhar.tscv.ServantAdditionalDetails" >
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.TenantsList" >
+        </activity>
+        
+        <activity android:name="com.aadhar.tscv.UnregisterTenant" >
         </activity>
     </application>
 

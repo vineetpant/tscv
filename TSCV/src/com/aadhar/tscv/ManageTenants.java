@@ -1,6 +1,7 @@
 package com.aadhar.tscv;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,18 +39,30 @@ public class ManageTenants extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
+		Intent i;
 		int id = arg0.getId();
 		switch (id) {
 
 		case R.id.btnRegisterTenant:
+			i =new Intent(this,RegisterNewTenant.class);
+			startActivity(i);
 			break;
 		case R.id.btnUnregisterTenant:
+			i =new Intent(this,UnregisterTenant.class);
+			startActivity(i);
 			break;
 		case R.id.btnViewCurrentTenants:
+			i =new Intent(this,TenantsList.class);
+			startActivity(i);
 			break;
 		case R.id.btnViewPreviousRecords:
+			i =new Intent(this,TenantsList.class);
+			startActivity(i);
 			break;
 		case R.id.btnTenantVerification:
+			TenantsList.IS_PENDING_VERIF=true;
+			i =new Intent(this,TenantsList.class);
+			startActivity(i);
 			break;
 
 		case R.id.btnUpdateCurrentTenants:

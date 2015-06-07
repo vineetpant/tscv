@@ -69,7 +69,8 @@ public class LoginActivity extends Activity implements OnClickListener,
 		switch (id) {
 		case R.id.btnProceed:
 			// if (isFp) {
-			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this, authCaptureData);
+			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(
+					this, authCaptureData);
 			authAsyncTask.setResHandler(this);
 			authAsyncTask.execute(BASE_URL + "/auth");
 			break;
@@ -92,11 +93,17 @@ public class LoginActivity extends Activity implements OnClickListener,
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK && requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
+
+	
+
+		if (resultCode == RESULT_OK
+				&& requestCode == AADHAAR_CONNECT_AUTH_REQUEST && data != null) {
 			String responseStr = data.getStringExtra("RESPONSE");
-			final AuthCaptureData authCaptureData = new Gson().fromJson(responseStr, AuthCaptureData.class);
-			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,authCaptureData);
-			authAsyncTask.execute(BASE_URL + "/auth");
+			final AuthCaptureData authCaptureData = new Gson().fromJson(
+					responseStr, AuthCaptureData.class);
+//			AadhaarAuthAsyncTaskAuth authAsyncTask = new AadhaarAuthAsyncTaskAuth(this,
+//					authCaptureData);
+//			authAsyncTask.execute(BASE_URL + "/auth");
 			return;
 		}
 	}
@@ -114,7 +121,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		i = new Intent("com.aadhaarconnect.bridge.action.AUTHCAPTURE");
 
 		AuthCaptureRequest biometricAuth = new AuthCaptureRequest();
-		biometricAuth.setAadhaar(txtEnterAadhaarNum.getText().toString());
+		biometricAuth.setAadhaar(uidNumber);
 		biometricAuth.setModality(Modality.biometric);
 		biometricAuth.setModalityType(ModalityType.fp);
 		biometricAuth.setCertificateType(CertificateType.preprod);
@@ -130,7 +137,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 		i.putExtra("REQUEST", new Gson().toJson(biometricAuth));
 
 		try {
-			startActivityForResult(i, AADHAAR_CONNECT_AUTH_REQUEST);
+			this.startActivityForResult(i, 1001);
 		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
@@ -142,14 +149,17 @@ public class LoginActivity extends Activity implements OnClickListener,
 //		String msg = "Authres received "+authRes;
 //
 //		DialogsNMsgs.createAlertDialog(msg, this);
+		
+		
 		if (authRes.isSuccess()) {
 			
 			DatabaseClass db = DatabaseClass
 					.getInstance(getApplicationContext());
 			Owner owner = db.getOwnerDetailByUID(uidNumber);
 			if (owner != null) {
-
-
+				Intent i=new Intent(this,OwnerAfterLoginActivity.class);
+				startActivity(i);
+				finish();	
 			} else {
 
 				String msg = "Please Sign Up with Ekyc Authentication Before First Login ";

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
         
-     <GridView
+     <ListView
         android:id="@+id/gridPreviousTenants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +12,13 @@
         android:numColumns="1"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" >
-    </GridView>
+    </ListView>
     
+       <Button
+        android:id="@+id/btnClose"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Close" />
 
 </LinearLayout>
