@@ -17,6 +17,7 @@ public class ManageServants extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_servant_manage);
+		init();
 	}
 
 	private void init() {
@@ -46,8 +47,7 @@ public class ManageServants extends Activity implements OnClickListener {
 		case R.id.btnRegisterServant:
 			i =new Intent(this,RegisterNewServant.class);
 			startActivity(i);
-			break;
-		
+			break;		
 		case R.id.btnUnregisterServant:
 			i =new Intent(this,UnregisterTenant.class);
 			startActivity(i);

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.aadhaarconnect.bridge.capture.model.auth.AuthCaptureRequest;
 import com.aadhaarconnect.bridge.capture.model.common.ConsentType;
+import com.aadhaarconnect.bridge.capture.model.common.Location;
+import com.aadhaarconnect.bridge.capture.model.common.LocationType;
 import com.aadhaarconnect.bridge.capture.model.common.request.CertificateType;
 import com.aadhaarconnect.bridge.capture.model.common.request.Modality;
 import com.aadhaarconnect.bridge.capture.model.common.request.ModalityType;
@@ -204,12 +206,9 @@ public class SignupActivity extends Activity implements OnClickListener ,ServerR
 		biometricAuth.setCertificateType(CertificateType.preprod);
 		biometricAuth.setNumOffingersToCapture(2);
 
-		com.aadhaarconnect.bridge.capture.model.common.Location loc = new com.aadhaarconnect.bridge.capture.model.common.Location();
-		loc.setType(com.aadhaarconnect.bridge.capture.model.common.LocationType.gps);
-		loc.setLatitude(String.valueOf("12.345"));
-		loc.setLongitude(String.valueOf("12.87277"));
-		loc.setAltitude(String.valueOf("15.9"));
-
+		Location loc = new Location();
+		loc.setType(LocationType.pincode);
+		loc.setPincode("560076");
 		biometricAuth.setLocation(loc);
 
 		kycRequest.setAuthCaptureRequest(biometricAuth);
